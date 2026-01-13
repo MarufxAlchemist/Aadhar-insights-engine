@@ -29,6 +29,24 @@ This directory contains official Government of India Aadhaar datasets and the da
 **Total Records:** ~183,247 rows  
 **Data Type:** Anonymized, aggregate monthly demographic update data
 
+### 3. `api_data_aadhar_biometric/` (4 CSV files)
+**Columns:**
+- `date` - Date in DD-MM-YYYY format
+- `state` - State name
+- `district` - District name
+- `pincode` - 6-digit pincode
+- `bio_age_5_17` - Biometric updates for age group 5-17 years
+- `bio_age_17_` - Biometric updates for age group 17+ years
+
+**Files:**
+- `api_data_aadhar_biometric_0_500000.csv` (500K records)
+- `api_data_aadhar_biometric_500000_1000000.csv` (500K records)
+- `api_data_aadhar_biometric_1000000_1500000.csv` (500K records)
+- `api_data_aadhar_biometric_1500000_1861108.csv` (361K records)
+
+**Total Records:** ~1,861,108 rows (1.86 million)  
+**Data Type:** Anonymized, aggregate monthly biometric update data (fingerprint, iris, photo)
+
 ## 🔧 Data Service API
 
 ### TypeScript Interfaces
@@ -36,14 +54,19 @@ This directory contains official Government of India Aadhaar datasets and the da
 ```typescript
 import { 
   AadhaarEnrolmentRecord, 
-  AadhaarDemographicUpdateRecord 
+  AadhaarDemographicUpdateRecord,
+  AadhaarBiometricUpdateRecord 
 } from '@/data/dataService';
 ```
 
 ### Loading Data
 
 ```typescript
-import { loadEnrolmentData, loadDemographicUpdateData } from '@/data/dataService';
+import { 
+  loadEnrolmentData, 
+  loadDemographicUpdateData,
+  loadBiometricUpdateData 
+} from '@/data/dataService';
 
 // Load enrolment data
 const enrolments = await loadEnrolmentData();
@@ -52,6 +75,10 @@ console.log(`Loaded ${enrolments.length} enrolment records`);
 // Load demographic update data
 const updates = await loadDemographicUpdateData();
 console.log(`Loaded ${updates.length} update records`);
+
+// Load biometric update data (loads 4 CSV files in parallel)
+const biometricUpdates = await loadBiometricUpdateData();
+console.log(`Loaded ${biometricUpdates.length} biometric update records`);
 ```
 
 ### Utility Functions
