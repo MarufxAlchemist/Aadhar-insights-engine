@@ -38,8 +38,8 @@ export function KPICard({
         : "text-muted-foreground";
 
   return (
-    <div className={cn("kpi-card p-5", className)}>
-      <div className="flex items-start justify-between mb-3">
+    <div className={cn("kpi-card p-6 animate-fade-in", className)}>
+      <div className="flex items-start justify-between mb-4">
         <span className="metric-label">{title}</span>
         {tooltip && (
           <Tooltip>
@@ -55,13 +55,13 @@ export function KPICard({
         )}
       </div>
 
-      <div className="space-y-1">
-        <p className="metric-value text-3xl text-foreground">{value}</p>
+      <div className="space-y-2">
+        <p className="metric-value text-4xl text-foreground">{value}</p>
         {(trend || subtitle) && (
           <div className="flex items-center gap-2">
             {trend && (
-              <span className={cn("flex items-center gap-1 text-sm", trendColor)}>
-                <TrendIcon className="w-3.5 h-3.5" />
+              <span className={cn("flex items-center gap-1 text-sm font-medium", trendColor)}>
+                <TrendIcon className="w-4 h-4" />
                 {trendValue}
               </span>
             )}
@@ -71,7 +71,7 @@ export function KPICard({
           </div>
         )}
         {interpretation && (
-          <p className="text-xs text-gray-600 mt-2 italic">
+          <p className="text-xs text-muted-foreground mt-3 italic leading-relaxed">
             {interpretation}
           </p>
         )}
