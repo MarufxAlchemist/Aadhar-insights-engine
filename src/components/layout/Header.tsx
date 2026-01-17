@@ -8,7 +8,7 @@ interface HeaderProps {
 
 export function Header({ title, subtitle, onFilterChange }: HeaderProps) {
   return (
-    <header className="bg-card/95 border-b border-border backdrop-blur-md sticky top-0 z-40">
+    <header className="bg-card/95 border-b border-border backdrop-blur-md">
       <div className="px-6 py-5 border-b border-border/50 bg-gradient-to-r from-card to-muted/20">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
